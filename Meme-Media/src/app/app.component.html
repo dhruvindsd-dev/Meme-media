@@ -1,3 +1,54 @@
-<div class="section has-text-centered">
-  <h1 class="title">MEME <span class="has-text-primary">MEDIA </span></h1>
+<div class="hero is-fullheight">
+  <!-- bg=#242037, upper bg=#332D4F, fonghg = #21EE8B -->
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5">
+          <p class="title has-text-centered">
+            Enter your username and password
+          </p>
+          <form>
+            <div class="field">
+              <label class="label is-size-5 has-text-weight-normal"
+                >Username</label
+              >
+              <div class="control">
+                <input
+                  name="username"
+                  type="text"
+                  class="input username_input"
+                  required
+                  placeholder="enter your username"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label is-size-5 has-text-weight-normal"
+                >Password</label
+              >
+              <div class="control">
+                <input
+                  type="password"
+                  name="password"
+                  class="input password_input"
+                  required
+                  placeholder="enter your password"
+                />
+              </div>
+            </div>
+            <input
+              type="text"
+              class="token_input"
+              style="display: none"
+              name="token"
+            />
+
+            <div class="control">
+              <button class="button is-link is-outlined is-light">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

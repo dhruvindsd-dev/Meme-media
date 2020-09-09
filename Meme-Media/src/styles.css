@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+/* <!-- bg=#242037, upper bg=#332D4F, fonghg = #21EE8B --> */
+
+body {
+  background-color: #242037;
+  color: #21ee8b !important;
+}
