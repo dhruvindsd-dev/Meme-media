@@ -1,7 +1,14 @@
-<nav class="navbar is-dark">
+<nav
+  #navbar
+  class="navbar is-fixed-top is-dark is-spaced is-transparent"
+  (window:scroll)="onScroll($event)"
+  style="background-color: transparent"
+>
   <div class="navbar-brand">
     <a class="navbar-item" href="#">
-      <span class="is-size-3 has-text-weight-bold"> Meme-Media </span>
+      <span class="is-size-4 has-text-weight-semibold has-text-primary">
+        Meme-Media
+      </span>
       <span class="icon is-medium"
         ><i class="fas fa-cannabis has-text-primary is-size-5"></i
       ></span>
@@ -18,14 +25,18 @@
     <div class="navbar-start"></div>
 
     <div class="navbar-end">
-      <a class="navbar-item"> Make Memes </a>
+      <a routerLink="meme-making" class="navbar-item"> Make Memes </a>
 
-      <a class="navbar-item">About us </a>
+      <a routerLink="about-us" class="navbar-item">About us </a>
       <div class="navbar-item">
-        <a href="" class="button is-primary is-light is-outlined">Login</a>
+        <a routerLink="/user/login" class="button is-light is-light is-outlined"
+          >Login</a
+        >
       </div>
       <div class="navbar-item">
-        <a href="" class="button is-primary is-light">SignUp</a>
+        <a routerLink="/user/signup" class="button is-light is-outlined"
+          >SignUp</a
+        >
       </div>
     </div>
   </div>

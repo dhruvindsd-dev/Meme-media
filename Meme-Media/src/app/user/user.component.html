@@ -1,1 +1,123 @@
-<p>user works!</p>
+<div class="hero is-fullheight">
+  <div class="hero-body has-background-dark">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5">
+          <p class="has-text-centered has-text-primary">
+            <span class="icon is-size-1"><i class="fas fa-cannabis"></i></span>
+          </p>
+          <div *ngIf="!newUser; else signup">
+            <p
+              class="has-text-primary is-size-3 has-text-centered has-text-weight-semibold"
+            >
+              Login
+            </p>
+            <br />
+            <form method="post">
+              <div class="field">
+                <label
+                  class="label has-text-primary is-size-5 has-text-weight-normal"
+                  >Username</label
+                >
+                <div class="control">
+                  <input
+                    type="text"
+                    class="input is-primary"
+                    required
+                    placeholder="enter your username"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label
+                  class="label has-text-primary is-size-5 has-text-weight-normal"
+                  >Password</label
+                >
+                <div class="control">
+                  <input
+                    type="password"
+                    class="input is-primary"
+                    required
+                    placeholder="enter your password"
+                  />
+                </div>
+              </div>
+              <div class="control">
+                <button class="button is-primary is-outlined">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <ng-template #signup>
+          <p
+            class="has-text-primary is-size-3 has-text-centered has-text-weight-semibold"
+          >
+            Signup
+          </p>
+          <br />
+          <form method="post">
+            <div class="field">
+              <label
+                class="label has-text-primary is-size-5 has-text-weight-normal"
+                >Username</label
+              >
+              <div class="control">
+                <input
+                  type="text"
+                  class="input is-primary"
+                  required
+                  placeholder="enter your username"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label
+                class="label has-text-primary is-size-5 has-text-weight-normal"
+                >Password</label
+              >
+              <div class="control">
+                <input
+                  type="password"
+                  class="input is-primary"
+                  required
+                  placeholder="enter your password"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label
+                class="label has-text-primary is-size-5 has-text-weight-normal"
+                >Confirm Password</label
+              >
+              <div class="control">
+                <input
+                  type="password"
+                  class="input is-primary"
+                  required
+                  placeholder="enter your password"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label
+                class="label has-text-primary is-size-5 has-text-weight-normal"
+                >Email</label
+              >
+              <div class="control">
+                <input
+                  type="email"
+                  class="input is-primary"
+                  required
+                  placeholder="Enter your email "
+                />
+              </div>
+            </div>
+            <div class="control">
+              <button class="button is-primary is-outlined">Login</button>
+            </div>
+          </form>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
