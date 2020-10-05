@@ -34,15 +34,18 @@
   </div>
 </div>
 <div class="section">
-  <p class="has-text-centered title ">
+  <p class="has-text-centered title">
     Pick any template and start making dope memes now
-  </p> <br> <br>
+  </p>
+  <br />
+  <br />
   <div class="columns is-vcentered is-multiline">
-    <div 
-    class="app-meme-template column is-3"
-    *ngFor="let meme of memesData"
-    [title] = "meme.title"
-    [img_path] = "meme.img_path"
+    <div
+      class="app-meme-template column is-3"
+      *ngFor="let meme of memesData"
+      [title]="meme.title"
+      [img_path]="meme.img_path"
+      [description]="false"
     ></div>
   </div>
 </div>

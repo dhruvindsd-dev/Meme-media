@@ -8,11 +8,9 @@ import { MemeEditorComponent } from './meme-editor/meme-editor.component';
 import { UserComponent } from './user/user.component';
 import { FeedComponent } from './feed/feed.component';
 import { HeaderComponent } from './header/header.component';
-import { Route, RouterModule } from '@angular/router';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { MemeTemplateComponent } from './meme-template/meme-template.component';
 import { MemeService } from './meme-templates.services';
-
 
 @NgModule({
   declarations: [

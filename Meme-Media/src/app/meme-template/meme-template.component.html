@@ -1,14 +1,59 @@
 <!-- meme template got two states: one state is the is when youre generating multiple template with just the title and the other one with the enlarged photo and the title and the description  -->
 
-    <div  *ngIf="template; else meme_description">
-        <div class="hover_scale" >
-        <figure class="image  has-background-dark">
-          <img src={{img_path}} alt={{title}}/>
-        </figure>
-        <p class="has-text-centered has-text-weight-semibold is-size-5 border-merge-title">{{title}}</p>
-        </div>
-      </div>
+<div
+  *ngIf="!description; else meme_description"
+  (click)="this.router.navigate(['meme-description', title])"
+>
+  <div class="hover_scale">
+    <figure class="image has-background-dark">
+      <img src="{{ img_path }}" alt="{{ title }}" />
+    </figure>
+    <p
+      class="has-text-centered has-text-weight-semibold is-size-5 border-merge-title"
+    >
+      {{ title }}
+    </p>
+  </div>
+</div>
 
 <ng-template #meme_description>
-<p class="title">this is meme description</p>
+  <app-header [fixed-top]="false"></app-header>
+  <div class="section">
+    <div class="columns is-centered">
+      <div
+        class="column is-4 section"
+        style="display: flex; align-items: center"
+      >
+        <div>
+          <p class="is-size-1 has-font-weight-bold">{{ meme.title }}</p>
+          <p class="is-size-5 has-font-weight-semibold">
+            {{ meme.description }}
+          </p>
+          <br />
+          <br />
+          <a
+            routerLink="#test"
+            class="button is-large is-fullwidth is-dark has-text-primary"
+            ><span>MAKE IT </span>
+            <span class="icon is-medium"
+              ><i class="fas fa-chevron-right"></i></span
+          ></a>
+          <br />
+          <p>
+            Click above to edit this template directly in your browser. Easily
+            replace with your own text and images.
+          </p>
+        </div>
+      </div>
+      <div class="column is-5 section">
+        <figure class="image is-square">
+          <img
+            src="{{ meme.img_path }}"
+            alt=""
+            style="border: 2px solid #33333369; box-shadow: 5px 5px #33333369"
+          />
+        </figure>
+      </div>
+    </div>
+  </div>
 </ng-template>
