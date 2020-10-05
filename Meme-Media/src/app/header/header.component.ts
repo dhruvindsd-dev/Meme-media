@@ -15,15 +15,14 @@ export class HeaderComponent implements OnInit {
   onScroll(event) {
     if (window.pageYOffset > 100 && this.transparent) {
       this.navBar.nativeElement.classList.remove('is-spaced');
-      this.navBar.nativeElement.classList.remove('navbar-transparent');
       this.transparent = false;
       this.navBar.nativeElement.style.backgroundColor = '';
     }
     if (window.pageYOffset < 50 && !this.transparent) {
       this.navBar.nativeElement.classList.add('is-spaced');
-      this.navBar.nativeElement.classList.add('navbar-transparent');
       this.transparent = true;
       this.navBar.nativeElement.style.backgroundColor = 'transparent';
     }
   }
 }
+  

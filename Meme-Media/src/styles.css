@@ -10,10 +10,3 @@ html {
   z-index: 100;
   transition: background-color 0.4s, padding 0.4s;
 }
-
-.hover-scale {
-  transition: 0.3s;
-}
-.hover-scale :hover {
-  transform: scale(1.1);
-}

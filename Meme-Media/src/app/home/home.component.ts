@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MemeService } from '../meme-templates.services';
+import { MemeModal } from '../meme.modal';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  memesData: MemeModal[]
+  constructor(private memeService: MemeService) { 
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
+    this.memesData = this.memeService.getAllMemes()    
   }
 
 }

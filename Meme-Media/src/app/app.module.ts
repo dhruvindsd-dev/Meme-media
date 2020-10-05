@@ -10,14 +10,9 @@ import { FeedComponent } from './feed/feed.component';
 import { HeaderComponent } from './header/header.component';
 import { Route, RouterModule } from '@angular/router';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { MemeTemplateComponent } from './meme-template/meme-template.component';
+import { MemeService } from './meme-templates.services';
 
-const appRoute: Route[] = [
-  { path: '', component: HomeComponent },
-  { path: 'user/:type', component: UserComponent },
-  { path: 'meme-making', component: MemeEditorComponent },
-  { path: 'feed', component: FeedComponent },
-  { path: 'about-us', component: AboutusComponent },
-];
 
 @NgModule({
   declarations: [
@@ -28,9 +23,10 @@ const appRoute: Route[] = [
     FeedComponent,
     HeaderComponent,
     AboutusComponent,
+    MemeTemplateComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoute)],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [MemeService], // only for injectables
   bootstrap: [AppComponent],
 })
 export class AppModule {}

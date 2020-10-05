@@ -1,0 +1,14 @@
+<!-- meme template got two states: one state is the is when youre generating multiple template with just the title and the other one with the enlarged photo and the title and the description  -->
+
+    <div  *ngIf="template; else meme_description">
+        <div class="hover_scale" >
+        <figure class="image  has-background-dark">
+          <img src={{img_path}} alt={{title}}/>
+        </figure>
+        <p class="has-text-centered has-text-weight-semibold is-size-5 border-merge-title">{{title}}</p>
+        </div>
+      </div>
+
+<ng-template #meme_description>
+<p class="title">this is meme description</p>
+</ng-template>

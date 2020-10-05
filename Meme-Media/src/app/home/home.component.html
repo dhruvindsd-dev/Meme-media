@@ -4,7 +4,7 @@
   style="
     /*noinspection CssUnknownTarget*/
     background-image: url('assets/images/home-hero.jpg');
-    background-position: center;
+    background-position: right;
     background-size: cover;
     object-fit: cover;
   "
@@ -34,49 +34,15 @@
   </div>
 </div>
 <div class="section">
-  <p class="has-text-centered title">
+  <p class="has-text-centered title ">
     Pick any template and start making dope memes now
-  </p>
+  </p> <br> <br>
   <div class="columns is-vcentered is-multiline">
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/leonardo_laughing.jpg" alt="leonardo_laughing" />
-      </figure>
-    </div>
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/emergency_meeting.jpg" alt="emergency_meeting" />
-      </figure>
-    </div>
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/papers_cat.jpg" alt="papers_cat" />
-      </figure>
-    </div>
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/thumbs_up_cat.jpg" alt="thumbs_up_cat" />
-      </figure>
-    </div>
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/gentleman.png" alt="gentleman" />
-      </figure>
-    </div>
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/monkey_puppet.jpg" alt="monkey_puppet" />
-      </figure>
-    </div>
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/mike.jpg" alt="mike" />
-      </figure>
-    </div>
-    <div class="column is-3">
-      <figure class="image is-square has-background-dark hover-scale">
-        <img src="assets/images/meme_templates/drake.jpg" alt="drake" />
-      </figure>
-    </div>
+    <div 
+    class="app-meme-template column is-3"
+    *ngFor="let meme of memesData"
+    [title] = "meme.title"
+    [img_path] = "meme.img_path"
+    ></div>
   </div>
 </div>
