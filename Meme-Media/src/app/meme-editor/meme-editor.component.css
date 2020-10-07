@@ -1,0 +1,11 @@
+* {
+  font-family: Impact;
+}
+.draggable {
+  cursor: move;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.highlight-el {
+  outline: 2px dotted rgba(0, 47, 255, 0.658);
+}

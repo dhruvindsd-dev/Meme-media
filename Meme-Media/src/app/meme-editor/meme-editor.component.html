@@ -1,1 +1,73 @@
-<p>meme-editor works!</p>
+<div class="columns" style="min-height: 100vh">
+  <div class="column section">
+    <div style="position: relative">
+      <svg
+        #svgRef
+        width="512"
+        height="512"
+        style="position: absolute; border: 2px solid #333333; user-select: none"
+      >
+        <image
+          x="0"
+          y="0"
+          height="512"
+          width="512"
+          href="assets/images/meme_templates/drake.jpg"
+          style="z-index: 0; position: absolute"
+          class="draggable"
+        />
+        <text
+          x="350"
+          y="150"
+          [attr.font-size]="topObj.fontSize"
+          text-anchor="middle"
+          fill="#333333"
+          font-weight="bold"
+          style="z-index: 100; position: absolute"
+          class="draggable"
+        >
+          <tspan class="parent">{{ topObj.text }}</tspan>
+          <tspan class="parent" [attr.dy]="topObj.fontSize" dx="-120">
+            test line word 2
+          </tspan>
+        </text>
+
+        <text
+          x="0"
+          y="0"
+          [attr.font-size]="topObj.fontSize"
+          text-anchor="middle"
+          fill="#333333"
+          font-weight="bold"
+          style="z-index: 1; position: absolute"
+          class="draggable"
+        >
+          <tspan class="parent">{{ topObj.text }}</tspan>
+          <!-- <tspan class="parent" dy="15" dx="-120">test line word 2</tspan> -->
+        </text>
+      </svg>
+    </div>
+  </div>
+  <div
+    class="column"
+    style="display: flex; align-items: center; justify-content: center"
+  >
+    <div>
+      <p class="is-size-3">{{ topObj.fontSize }}</p>
+      <input
+        type="range"
+        min="1"
+        max="50"
+        (input)="onFontSize($event)"
+        [attr.value]="topObj.fontSize"
+      />
+      <br />
+      <div class="fields">
+        <label class="label">Test</label>
+        <div class="control">
+          <input type="text" (input)="onTextChange($event)" class="input" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

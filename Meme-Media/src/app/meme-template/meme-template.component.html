@@ -18,20 +18,21 @@
 
 <ng-template #meme_description>
   <app-header [fixed-top]="false"></app-header>
-  <div class="section">
+  <div class="section" style="min-height: 100vh">
     <div class="columns is-centered">
       <div
-        class="column is-4 section"
+        class="column is-3 section"
         style="display: flex; align-items: center"
       >
         <div>
-          <p class="is-size-1 has-font-weight-bold">{{ meme.title }}</p>
+          <p class="title">{{ meme.title }}</p>
           <p class="is-size-5 has-font-weight-semibold">
             {{ meme.description }}
           </p>
           <br />
           <br />
           <a
+            [routerLink]="['/meme-editor']"
             routerLink="#test"
             class="button is-large is-fullwidth is-dark has-text-primary"
             ><span>MAKE IT </span>
@@ -45,12 +46,19 @@
           </p>
         </div>
       </div>
-      <div class="column is-5 section">
+      <div class="column is-1"></div>
+      <div class="column is-4">
         <figure class="image is-square">
           <img
             src="{{ meme.img_path }}"
             alt=""
-            style="border: 2px solid #33333369; box-shadow: 5px 5px #33333369"
+            style="
+              border: 2px solid #000000;
+              box-shadow: 5px 5px #000000c4;
+              object-fit: cover;
+              background-position: center;
+              background-size: cover;
+            "
           />
         </figure>
       </div>
