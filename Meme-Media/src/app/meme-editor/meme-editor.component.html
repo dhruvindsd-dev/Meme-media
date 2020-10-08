@@ -17,33 +17,18 @@
           class="draggable"
         />
         <text
+          #svgtxt
           x="350"
           y="150"
-          [attr.font-size]="topObj.fontSize"
+          [attr.font-size]="topObj.fontSize + 'px'"
           text-anchor="middle"
           fill="#333333"
           font-weight="bold"
           style="z-index: 100; position: absolute"
           class="draggable"
         >
-          <tspan class="parent">{{ topObj.text }}</tspan>
-          <tspan class="parent" [attr.dy]="topObj.fontSize" dx="-120">
-            test line word 2
-          </tspan>
-        </text>
-
-        <text
-          x="0"
-          y="0"
-          [attr.font-size]="topObj.fontSize"
-          text-anchor="middle"
-          fill="#333333"
-          font-weight="bold"
-          style="z-index: 1; position: absolute"
-          class="draggable"
-        >
-          <tspan class="parent">{{ topObj.text }}</tspan>
-          <!-- <tspan class="parent" dy="15" dx="-120">test line word 2</tspan> -->
+          <!-- <tspan class="parent">{{ topObj.text }}</tspan> -->
+          <!-- <tspan class="parent">Enter top</tspan> -->
         </text>
       </svg>
     </div>
@@ -54,6 +39,7 @@
   >
     <div>
       <p class="is-size-3">{{ topObj.fontSize }}</p>
+      <p class="is-size-5">Font size</p>
       <input
         type="range"
         min="1"
@@ -61,11 +47,22 @@
         (input)="onFontSize($event)"
         [attr.value]="topObj.fontSize"
       />
+      <hr class="has-background-dark">
+      <p class="is-size-5">No of Words Per Line</p>
+      <input type="range" min="1" max="10">
       <br />
+      <hr class="has-background-dark">
       <div class="fields">
-        <label class="label">Test</label>
+        <label class="label">Input</label>
         <div class="control">
           <input type="text" (input)="onTextChange($event)" class="input" />
+        </div>
+      </div> 
+
+      <div class="fields">
+        <div class="control">
+          <br>
+          <a (click)="nxtLineShifter()" class="button is-primary">Add a new element </a>
         </div>
       </div>
     </div>
