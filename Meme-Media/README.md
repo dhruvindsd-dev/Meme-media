@@ -34,7 +34,7 @@ A social media focused on creating and sharing memes.
  
 - About Us Page
   
-  ![About_Us_Page](https://i.imgur.com/gWRfZ10.png)
+  ![About_Us_Page](https://i.imgur.com/2DHd30d.png)
 
 <!---
 ## Usage:
