@@ -82,6 +82,8 @@
                   class="input is-primary"
                   required
                   placeholder="Enter your password"
+                  id="pass1"
+                  (keyup)="confirm()"
                 />
               </div>
             </div>
@@ -96,6 +98,8 @@
                   class="input is-primary"
                   required
                   placeholder="Enter your password"
+                  id="pass2"
+                  (keyup)="confirm()"
                 />
               </div>
             </div>
@@ -114,7 +118,7 @@
               </div>
             </div>
             <div class="control">
-              <button class="button is-primary is-outlined">Create Account</button>
+              <button class="button is-primary is-outlined" id="create">Create Account</button>
             </div>
           </form>
         </ng-template>
