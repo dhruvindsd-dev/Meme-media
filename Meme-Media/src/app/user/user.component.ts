@@ -11,10 +11,13 @@ export class UserComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    if (this.route.snapshot.params['type'] == 'login') {
-      this.newUser = false;
-    } else {
-      this.newUser = true;
-    }
+    this.route.params.subscribe((params)=>{
+      if (params['type'] == 'login') {
+        this.newUser = false;
+      } else {
+        this.newUser = true;
+      }
+    })
+    
   }
 }
