@@ -6,11 +6,11 @@ export class MemeService {
     new MemeModal(
       'Leonardo Laughing',
       'Some description',
-      '/assets/images/meme_templates/leonardo_laughing.jpg'
+      'assets/images/meme_templates/leonardo_laughing.jpg'
     ),
     new MemeModal(
       'Emergency Meeting',
-      'Some description',
+      'The "Emergency Meeting" meme is a popular meme that originated from the subterfuge game Among Us',
       'assets/images/meme_templates/emergency_meeting.jpg'
     ),
     new MemeModal(

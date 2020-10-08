@@ -18,28 +18,27 @@
 
 <ng-template #meme_description>
   <app-header [fixed-top]="false"></app-header>
-  <div class="section" style="min-height: 100vh">
+  <div class="section has-background-dark" style="min-height: 100vh;color: white">
     <div class="columns is-centered">
       <div
         class="column is-3 section"
         style="display: flex; align-items: center"
       >
         <div>
-          <p class="title">{{ meme.title }}</p>
+          <p class="title" style="color: white">{{ meme.title }}</p>
           <p class="is-size-5 has-font-weight-semibold">
             {{ meme.description }}
           </p>
           <br />
-          <br />
           <a
             [routerLink]="['/meme-editor']"
             routerLink="#test"
-            class="button is-large is-fullwidth is-dark has-text-primary"
+            class="button is-primary is-outlined"
             ><span>MAKE IT </span>
             <span class="icon is-medium"
               ><i class="fas fa-chevron-right"></i></span
           ></a>
-          <br />
+          <br /><br />
           <p>
             Click above to edit this template directly in your browser. Easily
             replace with your own text and images.

@@ -6,7 +6,7 @@
   [ngClass]="{ 'is-fixed-top is-spaced': scrolling }"
 >
   <div class="navbar-brand">
-    <a class="navbar-item" href="#">
+    <a class="button is-primary has-background-dark" href="#" >
       <span class="is-size-4 has-text-weight-semibold has-text-primary">
         Meme-Media
       </span>
@@ -26,18 +26,15 @@
     <div class="navbar-start"></div>
 
     <div class="navbar-end">
-      <a routerLink="meme-making" class="navbar-item"> Make Memes </a>
-
-      <a routerLink="about-us" class="navbar-item">About us </a>
+      <!--<a routerLink="meme-making" class="navbar-item"> Make Memes </a>-->
       <div class="navbar-item">
-        <a routerLink="/user/login" class="button is-light is-light is-outlined"
-          >Sign in</a
-        >
+        <a routerLink="/user/login" class="button is-primary is-outlined has-background-dark">Sign in</a>
       </div>
       <div class="navbar-item">
-        <a routerLink="/user/signup" class="button is-light is-outlined"
-          >Sign Up</a
-        >
+        <a routerLink="/user/signup" class="button is-primary is-outlined has-background-dark">Sign Up</a>
+      </div>
+      <div class="navbar-item">
+        <a routerLink="about-us" class="button is-primary is-outlined has-background-dark">About us</a>
       </div>
     </div>
   </div>
