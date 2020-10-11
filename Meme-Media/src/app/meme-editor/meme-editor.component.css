@@ -9,3 +9,7 @@
 .highlight-el {
   outline: 2px dotted rgba(0, 47, 255, 0.658);
 }
+svg {
+  max-width: 100%;
+  max-height: 100%;
+}

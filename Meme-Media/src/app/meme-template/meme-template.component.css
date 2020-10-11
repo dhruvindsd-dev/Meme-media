@@ -1,17 +1,27 @@
 .hover_scale {
   transition: all 0.2s;
-  border: 2px solid rgba(82, 82, 82, 0.247);
+  border: 1px solid #00d1b2;
+  box-shadow: 5px 5px #00d1b2;
   padding: 0px;
+}
+.hover_scale p {
+  /* display: none */
 }
 p {
   margin: 0px;
   padding: 5px;
 }
-
 .border-merge-title {
-  background: rgba(82, 82, 82, 0.247);
+  background: #333333;
 }
 .hover_scale:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.hover_scale:hover p {
+  display: block;
+}
+.hover_scale :hover img{
+  /* filter: blur(0.5); */
 }

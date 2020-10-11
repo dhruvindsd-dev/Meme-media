@@ -18,14 +18,14 @@
 
 <ng-template #meme_description>
   <app-header [fixed-top]="false"></app-header>
-  <div class="section has-background-dark" style="min-height: 100vh;color: white">
+  <div class="section has-background-dark" style="min-height: 95vh;color: white">
     <div class="columns is-centered">
       <div
         class="column is-3 section"
         style="display: flex; align-items: center"
       >
         <div>
-          <p class="title" style="color: white">{{ meme.title }}</p>
+          <p class="is-size-2 has-text-weight-bold" style="color: white">{{ meme.title }}</p>
           <p class="is-size-5 has-font-weight-semibold">
             {{ meme.description }}
           </p>
@@ -33,13 +33,13 @@
           <a
             [routerLink]="['/meme-editor']"
             routerLink="#test"
-            class="button is-primary is-outlined"
+            class="button is-primary is-outlined is-medium"
             ><span>MAKE IT </span>
             <span class="icon is-medium"
               ><i class="fas fa-chevron-right"></i></span
           ></a>
           <br /><br />
-          <p>
+          <p class="is-size-6">
             Click above to edit this template directly in your browser. Easily
             replace with your own text and images.
           </p>
@@ -52,8 +52,8 @@
             src="{{ meme.img_path }}"
             alt=""
             style="
-              border: 2px solid #000000;
-              box-shadow: 5px 5px #000000c4;
+              border: 2px solid #00d1b2;
+              box-shadow: 5px 5px #00d1b2;
               object-fit: cover;
               background-position: center;
               background-size: cover;

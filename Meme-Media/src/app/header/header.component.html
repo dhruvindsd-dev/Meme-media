@@ -1,12 +1,12 @@
 <nav
   #navbar
-  class="navbar is-dark"
+    class="navbar is-dark"
   (window:scroll)="onScroll()"
   style="background-color: transparent"
   [ngClass]="{ 'is-fixed-top is-spaced': scrolling }"
 >
   <div class="navbar-brand">
-    <a class="button is-primary has-background-dark" href="#" >
+    <a class="navbar-item has-background-dark" href="#" >
       <span class="is-size-4 has-text-weight-semibold has-text-primary">
         Meme-Media
       </span>

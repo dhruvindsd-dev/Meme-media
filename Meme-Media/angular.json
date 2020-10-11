@@ -23,6 +23,7 @@
             "styles": [
               "src/styles.css",
               "node_modules/bulma/css/bulma.min.css",
+              "node_modules/bulma-slider/dist/css/bulma-slider.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
             "scripts": []

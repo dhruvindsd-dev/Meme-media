@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-meme-editor',
@@ -15,10 +10,18 @@ export class MemeEditorComponent implements OnInit {
   @ViewChild('svgRef') svgRef: ElementRef;
   @ViewChild('svgtxt') svgtxt: ElementRef;
 
-  topObj: { text: string; fontSize: number; max_words_per_line: number } = {
+  topObj: {
+    text: string;
+    fontSize: number;
+    max_words_per_line: number;
+    x_pos;
+    y_pos;
+  } = {
     text: 'Enter Top text',
-    fontSize: 40,
+    fontSize: 20,
     max_words_per_line: 2,
+    x_pos: 10,
+    y_pos: 10,
   };
   bottomObj: { text: string; fontSize: number } = {
     text: 'Enter the Botton Text',
@@ -68,6 +71,13 @@ export class MemeEditorComponent implements OnInit {
         var coord = mousepos(evt);
         selectedElement.setAttributeNS(null, 'x', coord.x - offset.x);
         selectedElement.setAttributeNS(null, 'y', coord.y - offset.y);
+        // console.log(selectedElement.children);
+        if (selectedElement.children) {
+          topObj.x_pos = coord.x - offset.x;
+          for (let item of selectedElement.children) {
+            item.setAttributeNS(null, 'x', coord.x - offset.x);
+          }
+        }
       }
     }
     function endDrag(evt) {
@@ -77,38 +87,49 @@ export class MemeEditorComponent implements OnInit {
   }
 
   nxtLineShifter() {
-    this.svgtxt.nativeElement.innerHTML = ''; 
+    this.svgtxt.nativeElement.innerHTML = '';
 
-    const wordsList = this.topObj.text.split(' ')
-    const chunked_arr = []
-    let index = 0 
-    while (index < wordsList.length ){
-      chunked_arr.push(wordsList.slice(index, index + this.topObj.max_words_per_line))
-      index += this.topObj.max_words_per_line
-    }
-    for (let i of chunked_arr){
-      const spanEle = this.createTspan(i.join(' '))
-      this.svgtxt.nativeElement.appendChild(spanEle)
+    const wordsList = this.topObj.text.trim().split(' ');
+
+    const chunked_arr = [];
+    let index = 0;
+    while (index < wordsList.length) {
+      chunked_arr.push(
+        wordsList.slice(index, index + this.topObj.max_words_per_line)
+      );
+      index += this.topObj.max_words_per_line;
     }
     console.log(chunked_arr);
-    
-  }
-  // const spanEle = this.createTspan('test eleemnt added', )
-  // this.renderer.appendChild(this.svgtxt.nativeElement, spanEle)
-  // this.svgtxt.nativeElement.appendChild(spanEle)
-  // console.dir(spanEle);q
 
-  createTspan(txt) {
-    const rect = this.svgtxt.nativeElement.getBoundingClientRect();
+    let before_ele = null;
+    for (let i of chunked_arr) {
+      const spanEle = this.createTspan(i.join(' ').trim(), before_ele);
+      this.svgtxt.nativeElement.appendChild(spanEle);
+      before_ele = spanEle;
+      console.log(i.join(' ').trim());
+    }
+  }
+
+  createTspan(txt, beforeEle) {
+    var rect;
+    if (!beforeEle) {
+      rect = { width: 0 };
+    } else {
+      rect = beforeEle.getBBox();
+    }
+    console.log(rect);
+
     const tempSpan = document.createElementNS(
       'http://www.w3.org/2000/svg',
       'tspan'
     );
     tempSpan.classList.add('parent');
-    tempSpan.setAttributeNS(null, 'dx', `${-1 * rect.width}`);
+    // tempSpan.setAttributeNS(null, 'dx', `${-1 * rect.width}`);
+    tempSpan.setAttributeNS(null, 'x', `${this.topObj.x_pos}`);
     tempSpan.setAttributeNS(null, 'dy', `${this.topObj.fontSize}`);
 
     tempSpan.textContent = txt;
+    tempSpan.style.outline = '2px solid red';
     return tempSpan;
   }
 
@@ -116,10 +137,12 @@ export class MemeEditorComponent implements OnInit {
     let a = e.target.value;
     this.topObj.fontSize = a;
     this.bottomObj.fontSize = a;
+    this.svgtxt.nativeElement.setAttributeNS(null, 'font-size', `${a}px`);
+    this.nxtLineShifter();
   }
   onTextChange(e) {
     let a = e.target.value;
     this.topObj.text = a;
-    this.nxtLineShifter()
+    this.nxtLineShifter();
   }
 }
