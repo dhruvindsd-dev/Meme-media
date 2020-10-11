@@ -11,8 +11,16 @@
         [attr.value]="topObj.fontSize"
       />
       <hr class="has-background-dark" />
-      <p class="is-size-5">No of Words Per Line</p>
-      <input class="slider" step="1" min="0" max="10" value="50" type="range" />
+      <p class="is-size-5">Width of the line</p>
+      <input
+        class="slider"
+        step="2"
+        min="50"
+        max="512"
+        value="50"
+        type="range"
+        (input)="onWordsChange($event)"
+      />
       <br />
       <hr class="has-background-dark" />
       <div class="fields">
@@ -55,9 +63,11 @@
           <text
             #svgtxt
             x="350"
-            text-anchor="start"
             y="150"
-            fill="black"
+            stroke="black"
+            fill="white"
+            font-weight="bold"
+            stroke-width="2px"
             class="draggable"
           ></text>
 
