@@ -10,7 +10,7 @@ import { UserComponent } from './user/user.component';
 const routes: Route[] = [
   { path: '', component: HomeComponent },
   { path: 'user/:type', component: UserComponent },
-  { path: 'meme-editor', component: MemeEditorComponent },
+  { path: 'meme-editor/:title', component: MemeEditorComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'about-us', component: AboutusComponent },
   { path: 'meme-description/:title', component: MemeTemplateComponent },

@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MemeEditorComponent } from './meme-editor/meme-editor.component';
+import { memeEditorSvgDirective } from './meme-editor/meme-editor.directive';
 import { UserComponent } from './user/user.component';
 import { FeedComponent } from './feed/feed.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,6 +23,7 @@ import { MemeService } from './meme-templates.services';
     HeaderComponent,
     AboutusComponent,
     MemeTemplateComponent,
+    memeEditorSvgDirective,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [MemeService], // only for injectables

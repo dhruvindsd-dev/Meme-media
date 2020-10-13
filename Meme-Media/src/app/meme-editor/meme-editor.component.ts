@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MemeService } from '../meme-templates.services';
+import { MemeModal } from '../meme.modal';
 
 @Component({
   selector: 'app-meme-editor',
@@ -9,7 +12,7 @@ export class MemeEditorComponent implements OnInit {
   @ViewChild('img') image: ElementRef;
   @ViewChild('svgRef') svgRef: ElementRef;
   @ViewChild('svgtxt') svgtxt: ElementRef;
-
+  memeObj: MemeModal;
   topObj: {
     text: string;
     fontSize: number;
@@ -29,87 +32,18 @@ export class MemeEditorComponent implements OnInit {
     text: 'Enter the Botton Text',
     fontSize: 40,
   };
-  el: any;
-  constructor() {}
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    this.onSvgLoad();
+  // el: any;
+  constructor(
+    private route: ActivatedRoute,
+    private memeService: MemeService
+  ) {}
+  ngOnInit(): void {
+    this.memeObj = this.memeService.getMemeByTitle(
+      this.route.snapshot.params['title']
+    );
   }
-  onSvgLoad() {
-    let topObj = this.topObj;
-    var svg = this.svgRef.nativeElement;
-    svg.addEventListener('mousedown', startDrag);
-    svg.addEventListener('mousemove', drag);
-    svg.addEventListener('mouseup', endDrag);
-    svg.addEventListener('mouseleave', endDrag);
-    var selectedElement: any = false;
-    var offset: any = { x: 0, y: 0 };
+  ngAfterViewInit(): void {}
 
-    function mousepos(evt) {
-      var ctm = svg.getScreenCTM();
-      return {
-        x: (evt.clientX - ctm.e) / ctm.a,
-        y: (evt.clientY - ctm.f) / ctm.d,
-      };
-    }
-    function startDrag(evt) {
-      if (evt.target.classList.contains('draggable')) {
-        selectedElement = evt.target;
-        offset = mousepos(evt);
-        offset.x -= parseFloat(selectedElement.getAttributeNS(null, 'x'));
-        offset.y -= parseFloat(selectedElement.getAttributeNS(null, 'y'));
-      } else if (evt.target.classList.contains('parent')) {
-        selectedElement = evt.target.parentElement;
-        offset = mousepos(evt);
-        offset.x -= parseFloat(selectedElement.getAttributeNS(null, 'x'));
-        offset.y -= parseFloat(selectedElement.getAttributeNS(null, 'y'));
-      }
-      selectedElement.classList.add('highlight-el');
-    }
-    function drag(evt) {
-      if (selectedElement) {
-        evt.preventDefault();
-        var coord = mousepos(evt);
-        selectedElement.setAttributeNS(null, 'x', coord.x - offset.x);
-        selectedElement.setAttributeNS(null, 'y', coord.y - offset.y);
-        // console.log(selectedElement.children);
-        if (selectedElement.children) {
-          topObj.x_pos = coord.x - offset.x;
-          for (let item of selectedElement.children) {
-            item.setAttributeNS(null, 'x', coord.x - offset.x);
-          }
-        }
-      }
-    }
-    function endDrag(evt) {
-      if (selectedElement) selectedElement.classList.remove('highlight-el');
-      selectedElement = null;
-    }
-  }
-
-  // nxtLineShifter() {
-  //   this.svgtxt.nativeElement.innerHTML = '';
-
-  //   const wordsList = this.topObj.text.trim().split(' ');
-
-  //   const chunked_arr = [];
-  //   let index = 0;
-  //   while (index < wordsList.length) {
-  //     chunked_arr.push(
-  //       wordsList.slice(index, index + this.topObj.max_words_per_line)
-  //     );
-  //     index += this.topObj.max_words_per_line;
-  //   }
-  //   console.log(chunked_arr);
-
-  //   let before_ele = null;
-  //   for (let i of chunked_arr) {
-  //     const spanEle = this.createTspan(i.join(' ').trim(), before_ele);
-  //     this.svgtxt.nativeElement.appendChild(spanEle);
-  //     before_ele = spanEle;
-  //   }
-  // }
   nxtLineShifter() {
     this.svgtxt.nativeElement.innerHTML = '';
     const wordsList = this.topObj.text.trim().split(' ');

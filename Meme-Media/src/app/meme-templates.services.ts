@@ -1,4 +1,4 @@
-import { MemeModal } from './meme.modal';
+import { MemeModal, Text } from './meme.modal';
 
 export class MemeService {
   constructor() {}
@@ -41,7 +41,8 @@ export class MemeService {
     new MemeModal(
       'Drake',
       'Some description',
-      'assets/images/meme_templates/drake.jpg'
+      'assets/images/meme_templates/drake.jpg',
+      [new Text('Enter top text'), new Text('Enter Bottom text')]
     ),
   ];
 
