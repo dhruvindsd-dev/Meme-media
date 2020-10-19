@@ -17,7 +17,6 @@ export class memeEditorSvgDirective implements OnInit {
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    console.log('hey hey monica ', this.mousepos('test  '));
     this.onSvgLoad();
   }
 

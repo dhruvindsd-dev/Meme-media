@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { MemeTemplateComponent } from './meme-template/meme-template.component';
 import { MemeService } from './meme-templates.services';
+import { MemeEditorTextComponent } from './meme-editor/meme-editor-text/meme-editor-text.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,11 @@ import { MemeService } from './meme-templates.services';
     AboutusComponent,
     MemeTemplateComponent,
     memeEditorSvgDirective,
+    MemeEditorTextComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [MemeService], // only for injectables
   bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

@@ -1,81 +1,152 @@
-<div class="section" style="min-height: 100vh">
+<div class="has-background-dark has-text-centered">
+  <p class="is-size-1 has-text-primary">Meme Editor</p>
+</div>
+<div class="section has-background-dark has-text-light">
   <div class="columns section">
     <div class="column section">
-      <p class="is-size-3">{{ topObj.fontSize }}</p>
-      <p class="is-size-5">Font size</p>
-      <input
-        type="range"
-        min="1"
-        max="50"
-        (input)="onFontSize($event)"
-        [attr.value]="topObj.fontSize"
-      />
-      <hr class="has-background-dark" />
-      <p class="is-size-5">Width of the line</p>
-      <input
-        class="slider"
-        step="2"
-        min="50"
-        max="512"
-        value="50"
-        type="range"
-        (input)="onWordsChange($event)"
-      />
-      <br />
-      <hr class="has-background-dark" />
-      <div class="fields">
-        <label class="label">Input</label>
-        <div class="control">
-          <input type="text" (input)="onTextChange($event)" class="input" />
+      <nav class="panel is-dark" style="box-shadow: 0 0 0">
+        <div class="panel-heading has-text-centered">
+          <p class="is-size-3">Select a element to edit it</p>
         </div>
-      </div>
-
-      <div class="fields">
-        <div class="control">
-          <br />
-          <a (click)="nxtLineShifter()" class="button is-primary"
-            >Add a new element
+        <div class="panel-block" style="justify-content: center">
+          <div class="buttons is-centered">
+            <a
+              *ngFor="let item of memeObj.text; let index = index"
+              class="button is-rounded is-primary is-outlined"
+              (click)="elSelector($event, index)"
+              [ngClass]="{ 'is-hovered': currentSelectedEl == index }"
+              >Text {{ index + 1 }}
+            </a>
+            <br />
+            <!-- <a class="button is-rounded is-dark is-outlined">Image</a> -->
+          </div>
+        </div>
+        <div
+          *ngFor="let item of memeObj.text; let i = index"
+          [ngClass]="{ 'is-hidden': i !== currentSelectedEl }"
+        >
+          <div class="panel-block" style="justify-content: center">
+            <div class="buttons is-fullwidth has-text-centered">
+              <a
+                #boldBtn
+                class="button is-primary is-outlined is-hovered"
+                (click)="onBold(); boldBtn.classList.toggle('is-hovered')"
+              >
+                <span class="icon is-medium">
+                  <i class="fas fa-bold"></i>
+                </span>
+              </a>
+              <a
+                #alignBtn
+                class="button is-primary is-outlined"
+                (click)="onTextAlign(); alignBtn.classList.toggle('is-hovered')"
+              >
+                <span class="icon is-medium">
+                  <i class="fas fa-align-center"></i>
+                </span>
+              </a>
+              <a
+                #shadowBtn
+                class="button is-primary is-outlined is-hovered"
+                (click)="onShadow(); shadowBtn.classList.toggle('is-hovered')"
+              >
+                <span class="icon is-medium">
+                  <i class="fas fa-adjust"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+          <a class="panel-block is-active">
+            <span class="panel-icon">
+              <i class="fas fa-cannabis"></i>
+            </span>
+            <div class="column is-2">
+              <p class="is-size-5">Text {{ i }}</p>
+            </div>
+            <div class="column">
+              <input
+                type="text"
+                class="input is-primary"
+                (input)="onTextChange($event)"
+                value="{{ item.text }}"
+              />
+            </div>
+          </a>
+          <a class="panel-block is-active">
+            <span class="panel-icon">
+              <i class="fas fa-font"></i>
+            </span>
+            <div class="column has-padding-null is-5">
+              <p class="is-size-5">Font size : {{ item.fontSize }}</p>
+            </div>
+            <div class="column has-padding-null is-6">
+              <input
+                type="range"
+                min="1"
+                max="50"
+                (input)="onFontSize($event)"
+                [attr.value]="item.fontSize"
+                class="slider is-fullwidth"
+              />
+            </div>
+          </a>
+          <a class="panel-block">
+            <span class="panel-icon">
+              <i class="fas fa-text-width"></i>
+            </span>
+            <div class="column has-padding-null is-5">
+              <p class="is-size-5">Font Width : {{ item.fontWidth }}s</p>
+            </div>
+            <div class="column has-padding-null is-6">
+              <input
+                type="range"
+                min="50"
+                max="512"
+                step="5"
+                (input)="onWidthChange($event)"
+                [attr.value]="item.fontWidth"
+                class="slider is-fullwidth"
+              />
+            </div>
+          </a>
+          <a class="panel-block">
+            <span class="panel-icon"><i class="fas fa-palette"></i></span>
+            <div class="column">
+              <p class="is-size-5">#45632</p>
+            </div>
+            <input type="color" class="input" (input)="onColor($event)" />
           </a>
         </div>
-      </div>
+      </nav>
     </div>
+    <div class="column is-1"></div>
     <div class="column section">
-      <svg
-        editor
-        #svgRef
-        width="512px"
-        height="512px"
-        style="
-          border: 2px solid #333333;
-          user-select: none;
-          max-width: 100%;
-          max-height: 100%;
-        "
-      >
+      <svg #svgRef width="512px" height="512px" style="user-select: none">
         <image
           x="0"
           y="0"
           height="512"
           width="512"
           [attr.href]="memeObj.img_path"
-          class="draggable"
         />
         <text
-          #svgtxt
-          x="350"
-          y="150"
-          stroke="black"
+          *ngFor="let meme of memeObj.text; let index = index"
+          [attr.id]="index"
           fill="white"
+          [attr.font-size]="meme.fontSize"
+          stroke="black"
           font-weight="bold"
           stroke-width="2px"
-          class="draggable"
-        ></text>
-
-        <text y="50" x="100" class="draggable">
-          <tspan x="100" text-anchor="start" class="parent">000012340000</tspan>
-          <tspan x="100" text-anchor="start" class="parent" dy="15">1234</tspan>
+          style="text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.377)"
+          class="draggable text-el"
+          text-anchor="start"
+          #textRef
+        >
+          <tspan class="parent" x="20" dy="20">{{ meme.text }}</tspan>
         </text>
       </svg>
     </div>
   </div>
 </div>
+<!-- text-anchor='start' -->
+e

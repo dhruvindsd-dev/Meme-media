@@ -1,5 +1,6 @@
 * {
-  font-family: Impact;
+  /* font-family: Impact; */
+  color: white !important;
 }
 .draggable {
   cursor: move;
@@ -7,9 +8,33 @@
 }
 
 .highlight-el {
+  padding: 20px;
   outline: 2px dotted rgba(0, 47, 255, 0.658);
 }
 svg {
-  max-width: 100%;
-  max-height: 100%;
+  border: 2px solid #00d1b2;
+  box-shadow: 5px 5px #00d1b2;
+}
+
+.has-padding-null {
+  padding: 0px;
+}
+.panel-block:not(:last-child),
+.panel-tabs:not(:last-child) {
+  border-bottom: 1px solid #00d1b252;
+}
+
+.panel-block:hover {
+  background: #4d4d4dd8;
+}
+.panel-block:hover .panel-icon i {
+  color: #00d1b2 !important;
+}
+
+input {
+  background-color: #363636;
+}
+
+.is-hidden {
+  display: none;
 }

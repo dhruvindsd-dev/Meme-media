@@ -42,7 +42,10 @@ export class MemeService {
       'Drake',
       'Some description',
       'assets/images/meme_templates/drake.jpg',
-      [new Text('Enter top text'), new Text('Enter Bottom text')]
+      [
+        new Text('Enter top text', 10, 10),
+        new Text('Enter Bottom text', 100, 200, 22, 225),
+      ]
     ),
   ];
 

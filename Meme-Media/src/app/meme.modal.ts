@@ -20,9 +20,19 @@ export class Text {
   text: string;
   x: number;
   y: number;
-  constructor(txt: string, x: number = 0, y: number = 0) {
+  fontSize: number;
+  fontWidth: number;
+  constructor(
+    txt: string,
+    x: number = 0,
+    y: number = 0,
+    fontSize: number = 20,
+    fontWidth: number = 200
+  ) {
     this.text = txt;
     this.x = x;
     this.y = y;
+    this.fontSize = fontSize;
+    this.fontWidth = fontWidth;
   }
 }
