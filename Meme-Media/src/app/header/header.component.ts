@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,20 @@ export class HeaderComponent implements OnInit {
   @ViewChild('navbar') navBar: ElementRef;
   @Input('fixed-top') scrolling: boolean = true;
   transparent: Boolean = true;
-  constructor() {}
+  isAuth: boolean = false;
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.user.subscribe((res) => {
+      console.log(res);
+
+      if (!!res) {
+        this.isAuth = true;
+      } else {
+        this.isAuth = false;
+      }
+    });
+  }
 
   onScroll() {
     if (this.scrolling) {
@@ -33,5 +45,8 @@ export class HeaderComponent implements OnInit {
     } else {
       this.navBar.nativeElement.style.backgroundColor = 'transparent';
     }
+  }
+  onLogout() {
+    this.authService.logOut();
   }
 }

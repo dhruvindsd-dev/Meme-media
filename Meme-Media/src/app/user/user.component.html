@@ -14,37 +14,64 @@
               Sign in
             </p>
             <br />
-            <form method="post">
+            <app-error-msg *ngIf="!!error" [err]="error"></app-error-msg>
+            <br />
+            <form method="post" (ngSubmit)="onSubmit(sif)" #sif="ngForm">
               <div class="field">
                 <label
                   class="label has-text-primary is-size-5 has-text-weight-normal"
-                >Username or Email</label
+                >
+                  Email</label
                 >
                 <div class="control">
                   <input
                     type="text"
+                    name="email"
                     class="input is-primary"
                     required
-                    placeholder="Enter your username or email"
+                    ngModel
+                    email
+                    #email="ngModel"
+                    placeholder="Enter your email"
                   />
                 </div>
+                <p
+                  class="help is-danger"
+                  *ngIf="email.touched && email.invalid"
+                >
+                  Enter a valid email
+                </p>
               </div>
               <div class="field">
                 <label
                   class="label has-text-primary is-size-5 has-text-weight-normal"
-                >Password</label
+                  >Password</label
                 >
                 <div class="control">
                   <input
                     type="password"
                     class="input is-primary"
+                    name="password"
                     required
+                    ngModel
+                    #password="ngModel"
                     placeholder="Enter your password"
                   />
                 </div>
+                <p
+                  class="help is-danger"
+                  *ngIf="password.touched && password.invalid"
+                >
+                  Enter Your Password
+                </p>
               </div>
               <div class="control">
-                <button class="button is-primary is-outlined">Sign in</button>
+                <button
+                  [disabled]="!sif.valid"
+                  class="button is-primary is-outlined"
+                >
+                  Sign in
+                </button>
               </div>
             </form>
           </div>
@@ -56,69 +83,112 @@
             Sign up
           </p>
           <br />
-          <form method="post">
+          <app-error-msg *ngIf="!!error" [err]="error"></app-error-msg>
+          <br />
+          <form method="post" #suf="ngForm" (ngSubmit)="onSubmit(suf)">
             <div class="field">
               <label
                 class="label has-text-primary is-size-5 has-text-weight-normal"
-              >Username</label
+                >Username</label
               >
               <div class="control">
                 <input
                   type="text"
                   class="input is-primary"
                   required
+                  ngModel
+                  name="username"
+                  #username="ngModel"
                   placeholder="Enter your username"
                 />
               </div>
+              <p
+                class="help is-danger"
+                *ngIf="username.touched && username.invalid"
+              >
+                Enter Username
+              </p>
             </div>
             <div class="field">
               <label
                 class="label has-text-primary is-size-5 has-text-weight-normal"
-              >Email</label
+                >Email</label
               >
               <div class="control">
                 <input
                   type="email"
                   class="input is-primary"
                   required
+                  ngModel
+                  email
+                  name="email"
+                  #email="ngModel"
                   placeholder="Enter your email "
                 />
               </div>
+              <p class="help is-danger" *ngIf="email.touched && email.invalid">
+                Enter Valid Email
+              </p>
             </div>
             <div class="field">
               <label
                 class="label has-text-primary is-size-5 has-text-weight-normal"
-              >Password</label
+                >Password</label
               >
               <div class="control">
                 <input
                   type="password"
                   class="input is-primary"
                   required
+                  name="password"
+                  ngModel
+                  #password="ngModel"
                   placeholder="Enter your password"
-                  id="pass1"
-                  (keyup)="confirm()"
                 />
               </div>
+              <p
+                class="help is-danger"
+                *ngIf="password.touched && password.invalid"
+              >
+                Enter Valid Password
+              </p>
             </div>
             <div class="field">
               <label
                 class="label has-text-primary is-size-5 has-text-weight-normal"
-              >Confirm Password</label
+                >Confirm Password</label
               >
               <div class="control">
                 <input
                   type="password"
                   class="input is-primary"
+                  name="password1"
                   required
+                  ngModel
+                  #password1="ngModel"
                   placeholder="Enter your password"
                   id="pass2"
-                  (keyup)="confirm()"
                 />
               </div>
+              <p
+                class="help is-danger"
+                *ngIf="password1.touched && password1.value !== password.value"
+              >
+                Passwords Do Not Match
+              </p>
             </div>
             <div class="control">
-              <button class="button is-primary is-outlined" id="create">Create Account</button>
+              <button
+                [disabled]="
+                  newUser
+                    ? !suf.valid || !(password.value == password1.value)
+                    : !suf.valid
+                "
+                class="button is-primary is-outlined"
+                id="create"
+              >
+                Create Account
+              </button>
             </div>
           </form>
         </ng-template>

@@ -1,12 +1,12 @@
 <nav
   #navbar
-    class="navbar is-dark"
+  class="navbar is-dark"
   (window:scroll)="onScroll()"
   style="background-color: transparent"
   [ngClass]="{ 'is-fixed-top is-spaced': scrolling }"
 >
   <div class="navbar-brand">
-    <a class="navbar-item has-background-dark" href="#" >
+    <a class="navbar-item has-background-dark" href="#">
       <span class="is-size-4 has-text-weight-semibold has-text-primary">
         Meme-Media
       </span>
@@ -27,14 +27,29 @@
 
     <div class="navbar-end">
       <!--<a routerLink="meme-making" class="navbar-item"> Make Memes </a>-->
-      <div class="navbar-item">
-        <a routerLink="/user/login" class="button is-primary is-outlined has-background-dark">Sign in</a>
+      <div class="navbar-item" *ngIf="!isAuth">
+        <a
+          routerLink="/user/login"
+          class="button is-primary is-outlined has-background-dark"
+          >Sign in</a
+        >
+      </div>
+      <div class="navbar-item" *ngIf="!isAuth">
+        <a
+          routerLink="/user/signup"
+          class="button is-primary is-outlined has-background-dark"
+          >Sign Up</a
+        >
+      </div>
+      <div *ngIf="isAuth" class="navbar-item" (click)="onLogout()">
+        <a class="button is-primary is-outlined has-background-dark">Logout</a>
       </div>
       <div class="navbar-item">
-        <a routerLink="/user/signup" class="button is-primary is-outlined has-background-dark">Sign Up</a>
-      </div>
-      <div class="navbar-item">
-        <a [routerLink]="['/about-us']" class="button is-primary is-outlined has-background-dark">About us</a>
+        <a
+          [routerLink]="['/about-us']"
+          class="button is-primary is-outlined has-background-dark"
+          >About us</a
+        >
       </div>
     </div>
   </div>

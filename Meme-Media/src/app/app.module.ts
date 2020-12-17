@@ -13,6 +13,10 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { MemeTemplateComponent } from './meme-template/meme-template.component';
 import { MemeService } from './meme-templates.services';
 import { MemeEditorTextComponent } from './meme-editor/meme-editor-text/meme-editor-text.component';
+import { AuthService } from './auth/auth.service';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,9 +30,10 @@ import { MemeEditorTextComponent } from './meme-editor/meme-editor-text/meme-edi
     MemeTemplateComponent,
     memeEditorSvgDirective,
     MemeEditorTextComponent,
+    ErrorMsgComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [MemeService], // only for injectables
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [MemeService, AuthService], // only for injectables
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })

@@ -1,5 +1,8 @@
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -8,23 +11,53 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserComponent implements OnInit {
   newUser: Boolean;
-  constructor(private route: ActivatedRoute) {}
-
-  async confirm() {setTimeout(function check() {
-    const pass1 = (document.getElementById('pass1') as HTMLInputElement).value;
-    const pass2 = (document.getElementById('pass2') as HTMLInputElement).value;
-    (document.getElementById('create') as HTMLButtonElement).disabled = pass1 !== pass2;
-  }, 100);
-  }
+  error: string;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params)=>{
+    this.route.params.subscribe((params) => {
       if (params['type'] == 'login') {
         this.newUser = false;
       } else {
         this.newUser = true;
       }
-    })
+      this.error = '';
+    });
+  }
+  onSubmit(f: NgForm) {
+    const formData = new FormData();
+    formData.append('email', f.value.email);
+    formData.append('password', f.value.password);
+    if (this.newUser) {
+      // signup
+      formData.append('username', f.value.username);
+      console.log(formData);
 
+      this.authService.signUp(formData).subscribe(
+        (res) => {
+          this.router.navigate(['/']);
+        },
+        (err) => {
+          this.error = err;
+        }
+      );
+    } else {
+      console.log(f);
+      // sign in
+      console.log(formData);
+
+      this.authService.getToken(formData).subscribe(
+        (res) => {
+          this.router.navigate(['/']);
+        },
+        (err) => {
+          this.error = err;
+        }
+      );
+    }
   }
 }
